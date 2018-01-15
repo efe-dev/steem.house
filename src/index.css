@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600');
+
+body {
+  background-color: #27292a;
+  background-image: url(assets/textures/background.png);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #00fff9;
+  user-select: none;
+}
+
+.headup-grid {
+  margin: 0 auto;
+  max-width: 1000px;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .headup-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .headup-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

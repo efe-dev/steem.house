@@ -1,0 +1,11 @@
+.widget {
+  display: inline-block;
+  padding: 8px;
+  border: 0.5px solid rgba(0, 255, 249, 0.4);
+  border-radius: 3px;
+}
+
+.widget.fluid {
+  display: block;
+  width: 100%;
+}

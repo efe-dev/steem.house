@@ -1,0 +1,18 @@
+.block {
+  padding: 0 5px;
+}
+
+.block label {
+  font-size: 12px;
+  color: rgba(73, 189, 202, 0.8);
+}
+
+.content {
+  /* font-weight: 400; */
+}
+
+.subcontent {
+  font-size: 10px;
+  font-weight: 300;
+  color: white;
+}
