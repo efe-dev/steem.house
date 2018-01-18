@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getGlobalProperties } from '../actions';
+import { getGlobalProperties, getPrice } from '../actions';
 
 import Widget from '../components/widget/Widget';
 import Block from '../components/block/Block';
@@ -9,10 +9,14 @@ class Status extends Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(getGlobalProperties());
+    dispatch(getPrice());
     // We need fresh data for each 3secs.
     setInterval(() => {
       dispatch(getGlobalProperties());
     }, 3000);
+    setInterval(() => {
+      dispatch(getPrice());
+    }, 60000);
   }
 
   render() {
@@ -22,7 +26,8 @@ class Status extends Component {
       current_witness,
       head_block_number,
       maximum_block_size,
-      total_vesting_fund_steem
+      total_vesting_fund_steem,
+      price
     } = this.props;
     return current_supply ? (
       <div className="headup-grid">
@@ -43,8 +48,8 @@ class Status extends Component {
         <Widget>
           <Block
             label="STEEM"
-            content="1.14 USD - 0.97 EUR"
-            subcontent="(placeholder)"
+            content={price && `${price.usd}$ - ${price.eur}€`}
+            subcontent="-"
           />
         </Widget>
         <Widget>
@@ -77,7 +82,8 @@ class Status extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    ...state.r1
+    ...state.global,
+    price: { ...state.price }
   };
 };
 

@@ -1,1 +1,1 @@
-export * from './globalProperties';
+export * from './global.actions';

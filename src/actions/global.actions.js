@@ -28,3 +28,21 @@ export function getGlobalProperties() {
     });
   };
 }
+
+export function getPrice() {
+  return (dispatch, getState) => {
+    fetch('https://api.coinmarketcap.com/v1/ticker/steem/?convert=EUR')
+      .then(result => result.json())
+      .then(data => {
+        const { price_usd, price_btc, price_eur } = data[0];
+        dispatch({
+          type: 'GET_PRICE',
+          payload: {
+            btc: price_btc,
+            eur: parseFloat(price_eur).toFixed(2),
+            usd: parseFloat(price_usd).toFixed(2)
+          }
+        });
+      });
+  };
+}
